@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleShop - One Page Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">SimpleShop</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#cart">Cart</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home" class="hero">
+        <h1>Welcome to SimpleShop</h1>
+        <p style="color: white;">Discover amazing products at affordable prices</p>
+        <a href="#products" class="btn">Shop Now</a>
+    </section>
+    
+    <section id="products" class="products">
+        <h2 class="section-title">Our Products</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Wireless Headphones">
+                <h3>Wireless Headphones</h3>
+                <p class="price">₹5,009</p>
+                <button class="btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Smart Watch">
+                <h3>Smart Watch</h3>
+                <p class="price">₹10,854</p>
+                <button class="btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Bluetooth Speaker">
+                <h3>Bluetooth Speaker</h3>
+                <p class="price">₹3,340</p>
+                <button class="btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1603015269169-225cb700e29a?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Phone Case">
+                <h3>Phone Case</h3>
+                <p class="price">₹1,670</p>
+                <button class="btn">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+    
+    <section id="cart" class="cart">
+        <h2 class="section-title">Your Shopping Cart</h2>
+        <div class="cart-items">
+            <p>Your cart is currently empty.</p>
+            <div class="cart-item" style="display: none;">
+                <span class="item-name">Product Name</span>
+                <span class="item-price">₹0</span>
+            </div>
+            <div class="cart-total" style="text-align: right; margin-top: 1rem; font-weight: bold; display: none;">
+                Total: ₹0
+            </div>
+            <button class="btn" style="margin-top: 1rem; display: none;">Checkout</button>
+        </div>
+    </section>
+    
+    <section id="about" class="about">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-content">
+            <p>SimpleShop is your one-stop destination for quality products at affordable prices. Founded in 2025, we're committed to providing excellent customer service and fast shipping.</p>
+            <p style="margin-top: 1rem;">Our mission is to make online shopping simple, enjoyable, and accessible to everyone. We carefully select all our products to ensure they meet our high standards of quality.</p>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-form">
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 SimpleShop. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.product-card .btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                const productName = productCard.querySelector('h3').textContent;
+                const productPrice = productCard.querySelector('.price').textContent;
+                
+                alert(`Added to cart: ${productName} - ${productPrice}`);
+                
+                const cartItems = document.querySelector('.cart-items');
+                const emptyMsg = cartItems.querySelector('p');
+                const cartItemTemplate = cartItems.querySelector('.cart-item');
+                const cartTotal = cartItems.querySelector('.cart-total');
+                const checkoutBtn = cartItems.querySelector('.btn');
+                
+                if (emptyMsg.style.display !== 'none') {
+                    emptyMsg.style.display = 'none';
+                }
+                
+                cartItemTemplate.style.display = 'flex';
+                cartItemTemplate.querySelector('.item-name').textContent = productName;
+                cartItemTemplate.querySelector('.item-price').textContent = productPrice;
+                cartTotal.style.display = 'block';
+                cartTotal.textContent = `Total: ${productPrice}`;
+                checkoutBtn.style.display = 'inline-block';
+            });
+        });
+    </script>
+</body>
+</html>
